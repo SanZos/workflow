@@ -1,0 +1,23 @@
+{
+  "name": "outillage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn tsc && node dist/installer.js",
+    "build": "yarn tsc && pkg dist/installer.js -t node10-linux-x64 --output build/installeur",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git-dsi.log.intra.laposte.fr/argoss/outillage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.0.10",
+    "pkg": "^4.4.0",
+    "typescript": "^3.5.2"
+  }
+}
