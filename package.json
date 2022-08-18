@@ -1,0 +1,25 @@
+{
+  "name": "workflow",
+  "version": "1.0.0",
+  "description": "Run task sequentially either by a configuration file or programmatically",
+  "main": "dist/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && node dist/runner.js",
+    "build": "npm run compile && pkg dist/runner.js -t node18-linux-x64 --output build/runner",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SanZos/workflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.7.6",
+    "pkg": "^5.8.0",
+    "typescript": "^4.7.4"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "workflow": [
+    {
+      "nom": "Workflow Test",
+      "task": [
+        {
+          "nom": "affichage de 1 sur {{target}}",
+          "type": "ssh",
+          "target": "all",
+          "commande": "echo 1"
+        }
+      ]
+    }
+  ],
+  "server": {
+    "target": [
+      {
+        "server": "localhost",
+        "user": "user",
+        "type": "ssh"
+      }
+    ]
+  }
+}

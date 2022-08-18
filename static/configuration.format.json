@@ -1,0 +1,90 @@
+{
+    "workflow": [
+        {
+            "nom": "Workflow Test",
+            "task": [
+                {
+                    "nom": "affichage de 1 sur {{target}}",
+                    "type": "ssh",
+                    "target": "all",
+                    "commande": "echo 1"
+                }
+            ]
+        },
+        {
+            "nom": "Workflow Download",
+            "task": [
+                {
+                    "nom": "récupération de la dernière version de {{path}} depuis {{from}} vers {{to}}",
+                    "type": "https",
+                    "from": "source",
+                    "to": "repo",
+                    "path": "/example"
+                }
+            ]
+        },
+        {
+            "nom": "Tâche composé",
+            "task": [
+                {
+                    "nom": "sauvegarde de l'ancienne version de {{file}} sur {{target}}",
+                    "type": "ssh",
+                    "target": "all",
+                    "compression": "tar.gz",
+                    "file": [
+                        "fichier-1",
+                        "fichier-2"
+                    ],
+                    "allowFailing": true
+                },
+                {
+                    "nom": "déploiement de la version {{target}}",
+                    "type": "ssh+https",
+                    "from": "repo",
+                    "target": "all",
+                    "file": [
+                        {
+                            "source": "fichier-1",
+                            "dest": "fichier-1.dl"
+                        },
+                        {
+                            "source": "fichier-2",
+                            "dest": "fichier-2.dl",
+                            "compressed": true
+                        }
+                    ]
+                },
+                {
+                    "nom": "changement des droits de {{file}} sur {{target}}",
+                    "type": "ssh",
+                    "target": "all",
+                    "commande": "chmod 750 fichier-1.dl"
+                }
+            ]
+        }
+    ],
+    "server": {
+        "repo": {
+            "server": "localhost",
+            "user": "user",
+            "type": "ssh"
+        },
+        "source": {
+            "server": "localhost",
+            "user": "user",
+            "type": "https"
+        },
+        "target": [
+            {
+                "server": "localhost",
+                "user": "user",
+                "type": "ssh"
+            },
+            {
+                "server": "localhost",
+                "user": "user",
+                "type": "ssh"
+            }
+        ]
+    }
+}
